@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}Your Saved Tracks{% endblock %}
+
+{% block content %}
+  <h1>{{ request.user.username }}'s Saved Tracks</h1>
+  {% if saved_tracks %}
+    <ul>
+      {% for saved_track in saved_tracks %}
+        <li>
+          <strong>{{ saved_track.track.name }}</strong> by
+          {% for artist in saved_track.track.artists.all %}
+            {{ artist.name }}{% if not forloop.last %}, {% endif %}
+          {% endfor %}
+          <br>
+          Album: {{ saved_track.track.album.name }}
+          <br>
+          Added on: {{ saved_track.added_at|date:"F j, Y" }}
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No saved tracks found for this user.</p>
+  {% endif %}
+{% endblock %}

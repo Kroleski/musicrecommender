@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ track.name }}{% endblock %}
+
+{% block content %}
+    <h1>{{ track.name }}</h1>
+    <p><strong>Artists:</strong>
+        {% for artist in track.artists.all %}
+            {{ artist.name }}{% if not forloop.last %}, {% endif %}
+        {% endfor %}
+    </p>
+    <p><strong>Album:</strong> {{ track.album.name }}</p>
+    <p><strong>Duration:</strong> {{ track.duration_ms }} ms</p>
+    <p><strong>Popularity:</strong> {{ track.popularity }}</p>
+    <p><strong>Explicit:</strong> {{ track.explicit }}</p>
+    <p><strong>Preview:</strong>
+        {% if track.preview_url %}
+            <a href="{{ track.preview_url }}">Listen</a>
+        {% else %}
+            Not available
+        {% endif %}
+    </p>
+    <p><strong>External Link:</strong> <a href="{{ track.external_url }}">{{ track.external_url }}</a></p>
+    <a href="{% url 'content_based_recommendations' track.id %}">Get Recommendations</a>
+{% endblock %}

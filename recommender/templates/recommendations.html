@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}Recommended Tracks{% endblock %}
+
+{% block content %}
+    <h1>Recommended Tracks</h1>
+    <ul>
+        {% for track in tracks %}
+            <li>
+                {{ track.name }} by
+                {% for artist in track.artists.all %}
+                    {{ artist.name }}{% if not forloop.last %}, {% endif %}
+                {% endfor %}
+                - <a href="{% url 'track_detail' track.id %}">Details</a>
+            </li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'search_track' %}">Back to Search</a>
+{% endblock %}

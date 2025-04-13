@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}Fetch Tracks{% endblock %}
+
+{% block content %}
+  <h2>Fetch Tracks</h2>
+  <p>This page is intended to fetch tracks from the Spotify API and store them in the database.</p>
+  <form method="post">
+    {% csrf_token %}
+    <label for="track_id">Enter Track ID:</label>
+    <input type="text" id="track_id" name="track_id" required>
+    <button type="submit">Fetch and Store Track</button>
+  </form>
+{% endblock %}

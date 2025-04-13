@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block title %}Home - Music Recommender{% endblock %}
+
+{% block content %}
+    <h1>Welcome to the Music Recommender</h1>
+    <p>Use the navigation bar above to explore the application.</p>
+    {% if message %}
+        <p>{{ message }}</p>
+    {% endif %}
+{% endblock %}
